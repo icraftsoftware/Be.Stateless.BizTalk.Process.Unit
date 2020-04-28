@@ -20,7 +20,7 @@ using System;
 
 namespace Be.Stateless
 {
-	public static class LambdaFactory
+	public static class DelegateFactory
 	{
 		public static Action Action(Action action) => action;
 	}
