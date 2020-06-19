@@ -43,7 +43,7 @@ namespace Be.Stateless.BizTalk.Unit.Component
 	public abstract class PipelineComponentFixtureBase<T> where T : PipelineComponent, new()
 	{
 		/// <summary>
-		/// All the properties of <see cref="PipelineComponent"/> <see cref="T"/> that are to be read and written to an <see cref="IPropertyBag"/>.
+		/// All the properties of <see cref="PipelineComponent"/> <typeparamref name="T"/> that are to be read and written to an <see cref="IPropertyBag"/>.
 		/// </summary>
 		/// <remarks>
 		/// Any property that is <c>public</c> and optionally qualified by a <see cref="BrowsableAttribute">[Browsable(true)]</see> attribute is considered to
