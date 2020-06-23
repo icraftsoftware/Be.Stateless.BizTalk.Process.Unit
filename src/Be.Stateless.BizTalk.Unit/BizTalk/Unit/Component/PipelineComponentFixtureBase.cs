@@ -17,6 +17,7 @@
 #endregion
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -69,6 +70,11 @@ namespace Be.Stateless.BizTalk.Unit.Component
 
 		protected Mock<IPipelineContext> PipelineContextMock { get; private set; }
 
+		protected virtual Fixture CreateAutoFixture()
+		{
+			return new Fixture();
+		}
+
 		/// <summary>
 		/// <see cref="PipelineComponentFixtureBase{T}"/> initialization to be called either by an xUnit fixture's constructor or a NUnit fixture's SetUp
 		/// method.
@@ -92,12 +98,10 @@ namespace Be.Stateless.BizTalk.Unit.Component
 		/// </summary>
 		protected void VerifyAllPropertiesSupportsRoundTripStringConversion()
 		{
-			var fixture = new Fixture();
-
 			ConfigurableProperties.ForEach(
 				p => {
 					var converter = TypeDescriptor.GetConverter(p.PropertyType);
-					var value = new SpecimenContext(fixture).Resolve(p);
+					var value = new SpecimenContext(CreateAutoFixture()).Resolve(p);
 
 					if (!converter.CanConvertTo(typeof(string)))
 						throw new NotSupportedException(
@@ -116,6 +120,10 @@ namespace Be.Stateless.BizTalk.Unit.Component
 					if (deserializedValue == null)
 						throw new NotSupportedException(
 							$"The conversion from string made by {converter.GetType().Name} of the {p.PropertyType.Name} {p.Name} property returned null for {serializedValue}.");
+
+					if (value is IEnumerable actualEnumerable
+						&& deserializedValue is IEnumerable deserializedEnumerable
+						&& actualEnumerable.SequenceEqual(deserializedEnumerable)) return;
 
 					if (!value.Equals(deserializedValue))
 						throw new NotSupportedException(
