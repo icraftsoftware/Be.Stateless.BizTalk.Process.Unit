@@ -18,6 +18,7 @@
 
 using System.Runtime.InteropServices;
 using Be.Stateless.BizTalk.Component.Extensions;
+using Be.Stateless.BizTalk.MicroComponent;
 using Be.Stateless.BizTalk.Unit.Component;
 using Microsoft.BizTalk.Component.Interop;
 using Moq;
