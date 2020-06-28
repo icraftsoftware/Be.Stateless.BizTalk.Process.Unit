@@ -56,6 +56,7 @@ namespace Be.Stateless.BizTalk.Unit.Message
 			_contextMock = new Context.Mock<IBaseMessageContext>(behavior);
 			base.Setup(msg => msg.Context).Returns(_contextMock.Object);
 
+			SetupProperty(msg => msg.BodyPart.ContentType);
 			// hook GetOriginalDataStream() onto BodyPart.Data, so that it does not fail when BodyPart has a Data stream
 			SetupProperty(msg => msg.BodyPart.Data);
 			base.Setup(msg => msg.BodyPart.GetOriginalDataStream()).Returns(() => Object.BodyPart.Data);
@@ -133,6 +134,8 @@ namespace Be.Stateless.BizTalk.Unit.Message
 		public new void VerifyAll()
 		{
 			_contextMock.VerifyAll();
+			// HACK: ensure explicit setups are called at least once not to fail VerifyAll() against current IBaseMessage mock
+			Object.BodyPart.ContentType ??= "test/mock";
 			Object.BodyPart.Data ??= new MemoryStream();
 			Object.BodyPart.GetOriginalDataStream();
 			base.VerifyAll();

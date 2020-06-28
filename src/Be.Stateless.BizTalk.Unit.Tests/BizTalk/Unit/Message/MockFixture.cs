@@ -142,6 +142,16 @@ namespace Be.Stateless.BizTalk.Unit.Message
 		}
 
 		[Fact]
+		public void BodyPartContentTypeCanBeAssigned()
+		{
+			var message = new Mock<IBaseMessage> { DefaultValue = DefaultValue.Mock };
+
+			message.Object.BodyPart.ContentType = "application/test";
+
+			message.Object.BodyPart.ContentType.Should().Be("application/test");
+		}
+
+		[Fact]
 		public void BodyPartDataSetupImplicitlySetupOriginalDataStream()
 		{
 			const string content = "<s1:letter xmlns:s1='urn-one'>" +
