@@ -36,7 +36,6 @@
 
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.11.0" />
-    <PackageReference Include="Be.Stateless.BizTalk.Common" Version="2.0.20174.23917" />
     <PackageReference Include="Be.Stateless.Extensions" Version="2.0.20113.36957" />
     <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -47,6 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BizTalk.Common\src\Be.Stateless.BizTalk.Common\Be.Stateless.BizTalk.Common.csproj" />
     <ProjectReference Include="..\..\..\BizTalk.Pipeline.Components\src\Be.Stateless.BizTalk.Pipeline.Components\Be.Stateless.BizTalk.Pipeline.Components.csproj" />
   </ItemGroup>
 
