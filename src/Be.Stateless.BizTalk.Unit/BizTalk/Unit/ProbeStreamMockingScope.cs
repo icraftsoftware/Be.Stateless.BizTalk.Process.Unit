@@ -31,7 +31,7 @@ namespace Be.Stateless.BizTalk.Unit
 		{
 			_proberFactory = StreamExtensions.StreamProberFactory;
 			Mock = new Mock<IProbeStream>();
-			StreamExtensions.StreamProberFactory = stream => Mock.Object;
+			StreamExtensions.StreamProberFactory = _ => Mock.Object;
 		}
 
 		#region IDisposable Members
