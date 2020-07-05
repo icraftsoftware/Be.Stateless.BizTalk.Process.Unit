@@ -35,8 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoFixture" Version="4.11.0" />
-    <PackageReference Include="Be.Stateless.Extensions" Version="2.0.20183.50833" />
+    <PackageReference Include="AutoFixture" Version="4.12.0" />
+    <PackageReference Include="Be.Stateless.Extensions" Version="2.0.20184.29269" />
     <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
