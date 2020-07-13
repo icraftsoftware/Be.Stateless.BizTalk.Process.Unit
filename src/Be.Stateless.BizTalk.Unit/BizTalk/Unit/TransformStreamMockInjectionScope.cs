@@ -18,34 +18,34 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Be.Stateless.BizTalk.Streaming.Extensions;
-using Microsoft.BizTalk.Streaming;
 using Moq;
 
 namespace Be.Stateless.BizTalk.Unit
 {
 	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Public API")]
-	public class ProbeStreamMockingScope : IDisposable
+	public class TransformStreamMockInjectionScope : IDisposable
 	{
-		public ProbeStreamMockingScope()
+		public TransformStreamMockInjectionScope()
 		{
-			_proberFactory = StreamExtensions.StreamProberFactory;
-			Mock = new Mock<IProbeStream>();
-			StreamExtensions.StreamProberFactory = _ => Mock.Object;
+			_transformerFactory = StreamExtensions.StreamTransformerFactory;
+			Mock = new Mock<ITransformStream>();
+			StreamExtensions.StreamTransformerFactory = _ => Mock.Object;
 		}
 
 		#region IDisposable Members
 
 		public void Dispose()
 		{
-			StreamExtensions.StreamProberFactory = _proberFactory;
+			StreamExtensions.StreamTransformerFactory = _transformerFactory;
 		}
 
 		#endregion
 
 		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API")]
-		public Mock<IProbeStream> Mock { get; }
+		public Mock<ITransformStream> Mock { get; }
 
-		private readonly Func<MarkableForwardOnlyEventingReadStream, IProbeStream> _proberFactory;
+		private readonly Func<Stream[], ITransformStream> _transformerFactory;
 	}
 }

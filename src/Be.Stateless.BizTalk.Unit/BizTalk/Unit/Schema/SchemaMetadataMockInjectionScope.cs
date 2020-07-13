@@ -18,34 +18,34 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using Be.Stateless.BizTalk.Streaming.Extensions;
+using Be.Stateless.BizTalk.Schema;
 using Moq;
 
-namespace Be.Stateless.BizTalk.Unit
+namespace Be.Stateless.BizTalk.Unit.Schema
 {
 	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Public API")]
-	public class TransformStreamMockingScope : IDisposable
+	public class SchemaMetadataMockInjectionScope : IDisposable
 	{
-		public TransformStreamMockingScope()
+		[SuppressMessage("ReSharper", "MemberCanBeProtected.Global", Justification = "Public API")]
+		public SchemaMetadataMockInjectionScope()
 		{
-			_transformerFactory = StreamExtensions.StreamTransformerFactory;
-			Mock = new Mock<ITransformStream>();
-			StreamExtensions.StreamTransformerFactory = _ => Mock.Object;
+			_schemaMetadataFactory = SchemaMetadata.SchemaMetadataFactory;
+			Mock = new Mock<ISchemaMetadata>();
+			SchemaMetadata.SchemaMetadataFactory = _ => Mock.Object;
 		}
 
 		#region IDisposable Members
 
 		public void Dispose()
 		{
-			StreamExtensions.StreamTransformerFactory = _transformerFactory;
+			SchemaMetadata.SchemaMetadataFactory = _schemaMetadataFactory;
 		}
 
 		#endregion
 
-		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API")]
-		public Mock<ITransformStream> Mock { get; }
+		[SuppressMessage("ReSharper", "MemberCanBeProtected.Global", Justification = "Public API")]
+		public Mock<ISchemaMetadata> Mock { get; }
 
-		private readonly Func<Stream[], ITransformStream> _transformerFactory;
+		private readonly Func<Type, ISchemaMetadata> _schemaMetadataFactory;
 	}
 }

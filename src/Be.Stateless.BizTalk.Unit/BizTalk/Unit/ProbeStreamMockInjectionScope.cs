@@ -18,33 +18,34 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Be.Stateless.BizTalk.Schema;
+using Be.Stateless.BizTalk.Streaming.Extensions;
+using Microsoft.BizTalk.Streaming;
 using Moq;
 
-namespace Be.Stateless.BizTalk.Unit.Schema
+namespace Be.Stateless.BizTalk.Unit
 {
 	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Public API")]
-	public class SchemaMetadataMockingScope : IDisposable
+	public class ProbeStreamMockInjectionScope : IDisposable
 	{
-		public SchemaMetadataMockingScope()
+		public ProbeStreamMockInjectionScope()
 		{
-			_schemaMetadataFactory = SchemaMetadata.SchemaMetadataFactory;
-			Mock = new Mock<ISchemaMetadata>();
-			SchemaMetadata.SchemaMetadataFactory = _ => Mock.Object;
+			_proberFactory = StreamExtensions.StreamProberFactory;
+			Mock = new Mock<IProbeStream>();
+			StreamExtensions.StreamProberFactory = _ => Mock.Object;
 		}
 
 		#region IDisposable Members
 
 		public void Dispose()
 		{
-			SchemaMetadata.SchemaMetadataFactory = _schemaMetadataFactory;
+			StreamExtensions.StreamProberFactory = _proberFactory;
 		}
 
 		#endregion
 
 		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API")]
-		public Mock<ISchemaMetadata> Mock { get; }
+		public Mock<IProbeStream> Mock { get; }
 
-		private readonly Func<Type, ISchemaMetadata> _schemaMetadataFactory;
+		private readonly Func<MarkableForwardOnlyEventingReadStream, IProbeStream> _proberFactory;
 	}
 }
