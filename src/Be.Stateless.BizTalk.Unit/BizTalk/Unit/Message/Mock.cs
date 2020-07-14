@@ -45,6 +45,7 @@ namespace Be.Stateless.BizTalk.Unit.Message
 	/// <seealso cref="BaseMessage.Promote{T}(IBaseMessage,MessageContextProperty{T,string},string)"/>
 	/// <seealso cref="BaseMessage.Promote{T,TV}(IBaseMessage,MessageContextProperty{T,TV},TV)"/>
 	[SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Public API.")]
 	public class Mock<TMock> : Moq.Mock<TMock> where TMock : class, IBaseMessage
 	{
 		public Mock() : this(MockBehavior.Default) { }
@@ -161,6 +162,7 @@ namespace Be.Stateless.BizTalk.Unit.Message
 			Verify(expression, times(), failMessage);
 		}
 
+		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API.")]
 		public void Verify(Expression<Action<IBaseMessage>> expression, Times times, string failMessage = null)
 		{
 			// intercept and rewrite IBaseMessage Verify calls against IBaseMessageContext

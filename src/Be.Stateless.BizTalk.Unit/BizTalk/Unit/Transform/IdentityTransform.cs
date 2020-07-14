@@ -16,6 +16,7 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.XLANGs.BaseTypes;
 
 namespace Be.Stateless.BizTalk.Unit.Transform
@@ -24,6 +25,7 @@ namespace Be.Stateless.BizTalk.Unit.Transform
 	/// Utility identity transform that derives from <see cref="TransformBase"/>.
 	/// </summary>
 	[SchemaReference("Be.Stateless.BizTalk.Schemas.Xml.Any", typeof(Schemas.Xml.Any))]
+	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Unit Test Helper.")]
 	public class IdentityTransform : TransformBase
 	{
 		static IdentityTransform()

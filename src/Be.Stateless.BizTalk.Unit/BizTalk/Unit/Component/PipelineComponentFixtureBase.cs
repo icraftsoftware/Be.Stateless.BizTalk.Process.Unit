@@ -20,6 +20,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -41,6 +42,8 @@ namespace Be.Stateless.BizTalk.Unit.Component
 	/// <typeparam name="T">
 	/// The <see cref="PipelineComponent"/> derived class to test.
 	/// </typeparam>
+	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Public API.")]
+	[SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Public API.")]
 	public abstract class PipelineComponentFixtureBase<T> where T : PipelineComponent, new()
 	{
 		/// <summary>
@@ -66,8 +69,10 @@ namespace Be.Stateless.BizTalk.Unit.Component
 			}
 		}
 
+		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API.")]
 		protected MessageMock MessageMock { get; private set; }
 
+		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API.")]
 		protected Mock<IPipelineContext> PipelineContextMock { get; private set; }
 
 		protected virtual Fixture CreateAutoFixture()

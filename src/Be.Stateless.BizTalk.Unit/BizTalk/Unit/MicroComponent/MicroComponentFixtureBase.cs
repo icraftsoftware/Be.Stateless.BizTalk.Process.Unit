@@ -16,6 +16,7 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Be.Stateless.BizTalk.Component.Extensions;
 using Be.Stateless.BizTalk.MicroComponent;
@@ -28,16 +29,21 @@ namespace Be.Stateless.BizTalk.Unit.MicroComponent
 	/// <summary>
 	/// This base class provides utility methods for <see cref="IMicroComponent"/>-derived classes.
 	/// </summary>
+	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Public API.")]
 	public abstract class MicroComponentFixtureBase
 	{
+		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API.")]
+		[SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global", Justification = "Public API.")]
 		protected MessageMock MessageMock { get; private set; }
 
+		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API.")]
 		protected Mock<IPipelineContext> PipelineContextMock { get; private set; }
 
 		/// <summary>
 		/// <see cref="PipelineComponentFixtureBase{T}"/> initialization to be called either by an xUnit fixture's constructor or a NUnit fixture's SetUp
 		/// method.
 		/// </summary>
+		[SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Public API.")]
 		protected void Initialize()
 		{
 			MessageMock = new MessageMock { DefaultValue = DefaultValue.Mock };

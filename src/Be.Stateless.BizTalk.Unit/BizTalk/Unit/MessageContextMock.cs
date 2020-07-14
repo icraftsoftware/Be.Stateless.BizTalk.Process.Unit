@@ -16,9 +16,11 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.BizTalk.Message.Interop;
 
 namespace Be.Stateless.BizTalk.Unit
 {
+	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Public API.")]
 	public class MessageContextMock : Message.Context.Mock<IBaseMessageContext> { }
 }

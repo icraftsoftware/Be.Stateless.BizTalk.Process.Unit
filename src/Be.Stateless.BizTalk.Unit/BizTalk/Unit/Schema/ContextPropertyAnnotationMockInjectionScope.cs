@@ -16,12 +16,14 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 using Be.Stateless.BizTalk.Schema;
 using Be.Stateless.BizTalk.XPath;
 using Moq;
 
 namespace Be.Stateless.BizTalk.Unit.Schema
 {
+	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Public API.")]
 	public class ContextPropertyAnnotationMockInjectionScope : SchemaMetadataMockInjectionScope
 	{
 		public ContextPropertyAnnotationMockInjectionScope()
@@ -33,6 +35,8 @@ namespace Be.Stateless.BizTalk.Unit.Schema
 			Mock.Setup(smd => smd.Annotations).Returns(schemaAnnotationMock.Object);
 		}
 
+		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API.")]
+		[SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global", Justification = "Public API.")]
 		public PropertyExtractorCollection Extractors { get; set; }
 	}
 }

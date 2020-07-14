@@ -44,6 +44,7 @@ namespace Be.Stateless.BizTalk.Unit.Message.Context
 	/// <seealso cref="BaseMessageContext.Promote{T}(IBaseMessageContext,MessageContextProperty{T,string},string)"/>
 	/// <seealso cref="BaseMessageContext.Promote{T,TV}(IBaseMessageContext,MessageContextProperty{T,TV},TV)"/>
 	[SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
+	[SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Public API.")]
 	public class Mock<TMock> : Moq.Mock<TMock> where TMock : class, IBaseMessageContext
 	{
 		public Mock() : this(MockBehavior.Default) { }
@@ -184,22 +185,15 @@ namespace Be.Stateless.BizTalk.Unit.Message.Context
 		internal Expression<Action<TMock>> RewriteExpression(MethodCallExpression methodCallExpression)
 		{
 			var qualifiedName = GetContextPropertyXmlQualifiedName(methodCallExpression);
-			switch (methodCallExpression.Method.Name)
-			{
-				case nameof(BaseMessageContext.DeleteProperty):
-					return RewriteExpression(_writeExpressionTemplate, qualifiedName, Expression.Constant(null));
-				case nameof(BaseMessageContext.GetProperty):
-					return context => context.Read(qualifiedName.Name, qualifiedName.Namespace);
-				case nameof(BaseMessageContext.IsPromoted):
-					// TODO IsPromoted extension method ensures both that there is a value and that it is promoted
-					return context => context.IsPromoted(qualifiedName.Name, qualifiedName.Namespace);
-				case nameof(BaseMessageContext.SetProperty):
-					return RewriteExpression(_writeExpressionTemplate, qualifiedName, methodCallExpression.Arguments[2]);
-				case nameof(BaseMessageContext.Promote):
-					return RewriteExpression(_promoteExpressionTemplate, qualifiedName, methodCallExpression.Arguments[2]);
-				default:
-					throw new InvalidOperationException($"Unexpected call of extension method: '{methodCallExpression.Method.Name}'.");
-			}
+			return methodCallExpression.Method.Name switch {
+				nameof(BaseMessageContext.DeleteProperty) => RewriteExpression(_writeExpressionTemplate, qualifiedName, Expression.Constant(null)),
+				nameof(BaseMessageContext.GetProperty) => context => context.Read(qualifiedName.Name, qualifiedName.Namespace),
+				// TODO IsPromoted extension method ensures both that there is a value and that it is promoted
+				nameof(BaseMessageContext.IsPromoted) => context => context.IsPromoted(qualifiedName.Name, qualifiedName.Namespace),
+				nameof(BaseMessageContext.SetProperty) => RewriteExpression(_writeExpressionTemplate, qualifiedName, methodCallExpression.Arguments[2]),
+				nameof(BaseMessageContext.Promote) => RewriteExpression(_promoteExpressionTemplate, qualifiedName, methodCallExpression.Arguments[2]),
+				_ => throw new InvalidOperationException($"Unexpected call of extension method: '{methodCallExpression.Method.Name}'.")
+			};
 		}
 
 		private Expression<Action<TMock>> RewriteExpression(Expression<Action<TMock>> expressionTemplate, XmlQualifiedName qualifiedName, Expression valueExpression)
