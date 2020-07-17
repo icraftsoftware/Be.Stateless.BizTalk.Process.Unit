@@ -36,8 +36,11 @@
 
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.13.0" />
-    <PackageReference Include="Be.Stateless.BizTalk.Pipeline.Components" Version="2.0.20195.47839" />
-    <PackageReference Include="Be.Stateless.Extensions" Version="2.0.20184.29269" />
+    <PackageReference Include="Be.Stateless.BizTalk.Abstractions" Version="2.0.20199.24939" />
+    <PackageReference Include="Be.Stateless.BizTalk.Schemas" Version="2.0.20198.42589" />
+    <PackageReference Include="Be.Stateless.BizTalk.Stream" Version="2.0.20199.36444" />
+    <PackageReference Include="Be.Stateless.Extensions" Version="2.0.20196.40210" />
+    <PackageReference Include="Be.Stateless.Xml" Version="2.0.20198.24993" />
     <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

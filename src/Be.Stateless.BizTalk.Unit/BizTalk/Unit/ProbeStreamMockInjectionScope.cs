@@ -18,9 +18,10 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Be.Stateless.BizTalk.Streaming.Extensions;
+using Be.Stateless.BizTalk.Stream.Extensions;
 using Microsoft.BizTalk.Streaming;
 using Moq;
+using StreamExtensions = Be.Stateless.BizTalk.Stream.Extensions.StreamExtensions;
 
 namespace Be.Stateless.BizTalk.Unit
 {

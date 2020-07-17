@@ -18,8 +18,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using Be.Stateless.BizTalk.Streaming.Extensions;
+using Be.Stateless.BizTalk.Stream.Extensions;
 using Moq;
 
 namespace Be.Stateless.BizTalk.Unit
@@ -46,6 +45,6 @@ namespace Be.Stateless.BizTalk.Unit
 		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Public API")]
 		public Mock<ITransformStream> Mock { get; }
 
-		private readonly Func<Stream[], ITransformStream> _transformerFactory;
+		private readonly Func<System.IO.Stream[], ITransformStream> _transformerFactory;
 	}
 }

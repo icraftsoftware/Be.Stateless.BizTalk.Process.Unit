@@ -19,7 +19,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.XLANGs.BaseTypes;
 
-namespace Be.Stateless.BizTalk.Unit.Transform
+namespace Be.Stateless.BizTalk.Resources.Transform
 {
 	/// <summary>
 	/// Utility identity transform that derives from <see cref="TransformBase"/>.
