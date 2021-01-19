@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2012 - 2020 François Chabot
+// Copyright © 2012 - 2021 François Chabot
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,6 +31,8 @@ using Microsoft.BizTalk.Operations;
 namespace Be.Stateless.BizTalk.Unit.Process
 {
 	[SuppressMessage("Performance", "CA1822:Mark members as static")]
+	[SuppressMessage("ReSharper", "UnusedMember.Global")]
+	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public abstract class ProcessFixtureBase
 	{
 		protected virtual IEnumerable<Type> AllDependantOrchestrationTypes => DependantOrchestrationTypes;
@@ -138,6 +140,7 @@ namespace Be.Stateless.BizTalk.Unit.Process
 
 		private IEnumerable<string> AllOutputFolders => SystemOutputFolders.Concat(OutputFolders);
 
+		[SuppressMessage("ReSharper", "InvertIf")]
 		protected void InitializeFixture()
 		{
 			AllFolders.ForEach(
@@ -176,6 +179,7 @@ namespace Be.Stateless.BizTalk.Unit.Process
 		/// <summary>
 		/// Terminate all BizTalk service instances that are still running or that have been suspended.
 		/// </summary>
+		[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 		protected void TerminateUncompletedBizTalkServiceInstances()
 		{
 			BizTalkOperationsExtensions.TerminateUncompletedBizTalkServiceInstances();

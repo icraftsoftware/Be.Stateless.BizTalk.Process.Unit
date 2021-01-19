@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2012 - 2020 François Chabot
+// Copyright © 2012 - 2021 François Chabot
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,12 +17,14 @@
 #endregion
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework.Constraints;
 
 namespace Be.Stateless.BizTalk.Unit.Constraints
 {
 	public static class ConstraintExtensions
 	{
+		[SuppressMessage("ReSharper", "UnusedMember.Global")]
 		public static DelayedConstraint After(this Constraint constraint, TimeSpan delay)
 		{
 			if (constraint == null) throw new ArgumentNullException(nameof(constraint));

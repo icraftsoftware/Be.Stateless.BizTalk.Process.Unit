@@ -1,6 +1,6 @@
 #region Copyright & License
 
-// Copyright © 2012 - 2020 François Chabot
+// Copyright © 2012 - 2021 François Chabot
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 using Be.Stateless.BizTalk.Unit.Framework;
 
 namespace Be.Stateless.BizTalk.Unit.Process
@@ -24,5 +25,6 @@ namespace Be.Stateless.BizTalk.Unit.Process
 	/// Process fixture base class that automatically asserts that there is no uncompleted BizTalk Service instance.
 	/// </summary>
 	[AssertNoUncompletedBizTalkServiceInstance]
+	[SuppressMessage("ReSharper", "UnusedType.Global")]
 	public abstract class CompletedProcessFixture : ProcessFixture { }
 }

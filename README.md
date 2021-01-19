@@ -11,4 +11,6 @@ BizTalk.Factory's process/flow unit test library for general purpose Biztalk Ser
 
 [![NuGet Version](https://img.shields.io/nuget/v/Be.Stateless.BizTalk.Process.NUnit.svg?label=Be.Stateless.BizTalk.Process.NUnit&style=flat)](https://www.nuget.org/packages/Be.Stateless.BizTalk.Process.NUnit/)
 
+<!--
 [![NuGet Version](https://img.shields.io/nuget/v/Be.Stateless.BizTalk.Process.XUnit.svg?label=Be.Stateless.BizTalk.Process.XUnit&style=flat)](https://www.nuget.org/packages/Be.Stateless.BizTalk.Process.XUnit/)
+-->

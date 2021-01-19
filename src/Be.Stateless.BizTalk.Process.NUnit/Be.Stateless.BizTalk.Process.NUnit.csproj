@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Be.Stateless.BizTalk.Activity.Monitoring" Version="2.0.21019.43098" />
     <PackageReference Include="Be.Stateless.BizTalk.ServiceModel.NUnit" Version="2.0.21011.43461" />
     <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
