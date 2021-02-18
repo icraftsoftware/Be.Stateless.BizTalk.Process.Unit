@@ -30,7 +30,6 @@ using Microsoft.BizTalk.Operations;
 
 namespace Be.Stateless.BizTalk.Unit.Process
 {
-	[SuppressMessage("Performance", "CA1822:Mark members as static")]
 	[SuppressMessage("ReSharper", "UnusedMember.Global")]
 	[SuppressMessage("ReSharper", "VirtualMemberNeverOverridden.Global")]
 	public abstract class ProcessFixtureBase

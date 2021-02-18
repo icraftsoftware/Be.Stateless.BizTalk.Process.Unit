@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2012 - 2020 François Chabot
+// Copyright © 2012 - 2021 François Chabot
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,9 +16,39 @@
 
 #endregion
 
+using log4net;
 using Microsoft.BizTalk.XLANGs.BTXEngine;
+using NUnit.Framework;
 
 namespace Be.Stateless.BizTalk.Unit.Process
 {
-	public abstract class OrchestrationFixture<T> : OrchestrationFixtureBase<T> where T : BTXService { }
+	public abstract class OrchestrationFixture<T> : OrchestrationFixtureBase<T> where T : BTXService
+	{
+		[OneTimeSetUp]
+		protected void BizTalkFactoryOrchestrationFixtureOneTimeSetUp()
+		{
+			InitializeFixture();
+		}
+
+		[SetUp]
+		protected void BizTalkFactoryOrchestrationFixtureTestSetup()
+		{
+			_logger.InfoFormat("Running test '{0}'.", TestContext.CurrentContext.Test.FullName);
+			Initialize();
+		}
+
+		[TearDown]
+		protected void BizTalkFactoryOrchestrationFixtureTestTearDown()
+		{
+			Terminate();
+		}
+
+		[OneTimeTearDown]
+		public void BizTalkFactoryOrchestrationFixtureOneTimeTearDown()
+		{
+			TerminateFixture();
+		}
+
+		private static readonly ILog _logger = LogManager.GetLogger(typeof(OrchestrationFixture<T>));
+	}
 }
