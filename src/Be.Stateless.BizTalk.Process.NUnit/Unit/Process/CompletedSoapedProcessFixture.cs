@@ -20,14 +20,12 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Be.Stateless.BizTalk.Unit.ServiceModel;
 using Be.Stateless.BizTalk.Unit.ServiceModel.Stub;
-using Microsoft.BizTalk.XLANGs.BTXEngine;
 
 namespace Be.Stateless.BizTalk.Unit.Process
 {
 	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Public API.")]
 	[SoapStubHostActivator]
-	public abstract class CompletedSoapedOrchestrationFixture<T> : CompletedOrchestrationFixture<T>, ISoapServiceHostInjection
-		where T : BTXService
+	public abstract class CompletedSoapedProcessFixture : CompletedProcessFixture, ISoapServiceHostInjection
 	{
 		#region ISoapServiceHostInjection Members
 
