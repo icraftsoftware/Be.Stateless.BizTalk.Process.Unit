@@ -20,7 +20,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Be.Stateless.BizTalk.Activity.Monitoring.Model;
-using Be.Stateless.BizTalk.Unit.Constraints;
 using NUnit.Framework;
 
 namespace Be.Stateless.BizTalk.Unit
@@ -44,7 +43,7 @@ namespace Be.Stateless.BizTalk.Unit
 						return searchContext.Processes.Single(p => p.ActivityID == process.ActivityID).MessagingSteps.Where(predicate).SingleOrDefault();
 					}
 				},
-				Is.Not.Null.After(timeout, TrackingRepository.PollingInterval));
+				Is.Not.Null.After((int) timeout.TotalMilliseconds, (int) TrackingRepository.PollingInterval.TotalMilliseconds));
 
 			TrackingRepository.Refresh(process, p => p.MessagingSteps);
 			return process.MessagingSteps.Where(predicate).Single();
@@ -64,7 +63,7 @@ namespace Be.Stateless.BizTalk.Unit
 						return searchContext.Processes.Single(p => p.ActivityID == process.ActivityID).ProcessingSteps.Where(predicate).SingleOrDefault();
 					}
 				},
-				Is.Not.Null.After(timeout, TrackingRepository.PollingInterval));
+				Is.Not.Null.After((int) timeout.TotalMilliseconds, (int) TrackingRepository.PollingInterval.TotalMilliseconds));
 
 			TrackingRepository.Refresh(process, p => p.ProcessingSteps);
 			return process.ProcessingSteps.Where(predicate).Single();

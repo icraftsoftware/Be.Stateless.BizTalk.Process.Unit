@@ -22,7 +22,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using Be.Stateless.BizTalk.Activity.Monitoring.Model;
-using Be.Stateless.BizTalk.Unit.Constraints;
 using NUnit.Framework;
 
 namespace Be.Stateless.BizTalk.Unit
@@ -63,7 +62,7 @@ namespace Be.Stateless.BizTalk.Unit
 						return searchContext.Processes.Where(predicate).SingleOrDefault();
 					}
 				},
-				Is.Not.Null.After(timeout, PollingInterval));
+				Is.Not.Null.After((int) timeout.TotalMilliseconds, (int) PollingInterval.TotalMilliseconds));
 			return Processes.Where(predicate).Single();
 		}
 
