@@ -35,7 +35,7 @@ namespace Be.Stateless.BizTalk.Unit
 		{
 			// ReSharper disable once UnusedVariable, see http://pinter.org/?p=2374; https://entityframework.codeplex.com/workitem/1590
 			var ensureReferenceToEntityFrameworkSqlServer = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
-			_context = new ActivityContext();
+			_context = new();
 			Timeout = TimeSpan.FromSeconds(30);
 			PollingInterval = TimeSpan.FromSeconds(1);
 		}
