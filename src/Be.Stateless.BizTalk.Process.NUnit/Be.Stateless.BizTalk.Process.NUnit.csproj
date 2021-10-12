@@ -38,8 +38,8 @@
 
   <ItemGroup>
     <PackageReference Include="Be.Stateless.BizTalk.Activity.Monitoring" Version="2.0.21284.52049" />
-    <PackageReference Include="Be.Stateless.BizTalk.ServiceModel.NUnit" Version="2.0.21284.33940" />
-    <PackageReference Include="Be.Stateless.BizTalk.ServiceModel.Unit" Version="2.0.21284.33940" />
+    <PackageReference Include="Be.Stateless.BizTalk.ServiceModel.NUnit" Version="2.0.21285.40537" />
+    <PackageReference Include="Be.Stateless.BizTalk.ServiceModel.Unit" Version="2.0.21285.40537" />
     <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
