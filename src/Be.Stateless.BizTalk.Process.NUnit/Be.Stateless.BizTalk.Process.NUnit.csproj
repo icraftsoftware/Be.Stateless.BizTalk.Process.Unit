@@ -38,19 +38,19 @@
 
   <ItemGroup>
     <PackageReference Include="Be.Stateless.BizTalk.Activity.Monitoring" Version="2.0.21284.52049" />
-    <PackageReference Include="Be.Stateless.BizTalk.ServiceModel.NUnit" Version="2.0.21285.40537" />
-    <PackageReference Include="Be.Stateless.BizTalk.ServiceModel.Unit" Version="2.0.21285.40537" />
-    <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.1">
+    <PackageReference Include="Be.Stateless.BizTalk.ServiceModel.NUnit" Version="2.0.21360.39910" />
+    <PackageReference Include="Be.Stateless.BizTalk.ServiceModel.Unit" Version="2.0.21360.39910" />
+    <PackageReference Include="BizTalk.Server.2020.Runtime" Version="1.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="log4net" Version="2.0.12" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
+    <PackageReference Include="log4net" Version="2.0.13" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="NUnit" Version="3.13.2" />
   </ItemGroup>
 
