@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2012 - 2021 François Chabot
+// Copyright © 2012 - 2022 François Chabot
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 
 #endregion
 
+using System;
+using System.Globalization;
 using System.Xml.Linq;
 using Be.Stateless.BizTalk.ContextProperties;
 using Be.Stateless.IO;
@@ -27,6 +29,26 @@ namespace Be.Stateless.BizTalk.Unit.IO.Extensions
 {
 	public class StreamExtensionsFixture
 	{
+		[Fact]
+		public void InjectDateTimeAttribute()
+		{
+			var sut = new StringStream(XDocument.Parse("<root />").ToString(SaveOptions.DisableFormatting));
+
+			var stream = sut.InjectAttribute(SBMessagingProperties.EnqueuedTimeUtc, DateTime.Parse("2022-02-24T11:00:00.123456z", null, DateTimeStyles.RoundtripKind));
+
+			stream.ReadToEnd().Should().Be("<root EnqueuedTimeUtc=\"2022-02-24T11:00:00.123456Z\" />");
+		}
+
+		[Fact]
+		public void InjectDateTimeOffsetAttribute()
+		{
+			var sut = new StringStream(XDocument.Parse("<root />").ToString(SaveOptions.DisableFormatting));
+
+			var stream = sut.InjectAttribute(SBMessagingProperties.EnqueuedTimeUtc, DateTimeOffset.Parse("2022-02-24T11:00:00.123456+01:00", null, DateTimeStyles.RoundtripKind));
+
+			stream.ReadToEnd().Should().Be("<root EnqueuedTimeUtc=\"2022-02-24T11:00:00.123456+01:00\" />");
+		}
+
 		[Fact]
 		public void InjectIntegerAttribute()
 		{

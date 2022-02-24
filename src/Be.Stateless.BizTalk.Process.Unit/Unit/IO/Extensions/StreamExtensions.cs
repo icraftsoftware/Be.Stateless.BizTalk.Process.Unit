@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2012 - 2021 François Chabot
+// Copyright © 2012 - 2022 François Chabot
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 #endregion
 
-using System.Diagnostics.CodeAnalysis;
+using System;
 using System.IO;
 using System.Xml;
 using Be.Stateless.BizTalk.ContextProperties;
@@ -25,8 +25,6 @@ using Microsoft.XLANGs.BaseTypes;
 
 namespace Be.Stateless.BizTalk.Unit.IO.Extensions
 {
-	[SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Public API.")]
-	[SuppressMessage("ReSharper", "UnusedType.Global", Justification = "Extension class.")]
 	public static class StreamExtensions
 	{
 		public static Stream InjectAttribute<T>(this Stream stream, MessageContextProperty<T, string> property, string value)
@@ -39,6 +37,18 @@ namespace Be.Stateless.BizTalk.Unit.IO.Extensions
 			where T : MessageContextPropertyBase, new()
 		{
 			return stream.InjectAttribute(property.Name, value.ToString());
+		}
+
+		public static Stream InjectAttribute<T>(this Stream stream, MessageContextProperty<T, DateTime> property, DateTime value)
+			where T : MessageContextPropertyBase, new()
+		{
+			return stream.InjectAttribute(property.Name, XmlConvert.ToString(value, XmlDateTimeSerializationMode.RoundtripKind));
+		}
+
+		public static Stream InjectAttribute<T>(this Stream stream, MessageContextProperty<T, DateTime> property, DateTimeOffset value)
+			where T : MessageContextPropertyBase, new()
+		{
+			return stream.InjectAttribute(property.Name, XmlConvert.ToString(value));
 		}
 
 		private static Stream InjectAttribute(this Stream stream, string name, string value)
