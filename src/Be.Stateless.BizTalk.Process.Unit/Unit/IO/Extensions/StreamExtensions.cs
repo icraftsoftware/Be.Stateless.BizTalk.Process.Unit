@@ -1,6 +1,6 @@
 ﻿#region Copyright & License
 
-// Copyright © 2012 - 2021 François Chabot
+// Copyright © 2012 - 2022 François Chabot
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 #endregion
 
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Xml;
@@ -39,6 +40,12 @@ namespace Be.Stateless.BizTalk.Unit.IO.Extensions
 			where T : MessageContextPropertyBase, new()
 		{
 			return stream.InjectAttribute(property.Name, value.ToString());
+		}
+
+		public static Stream InjectAttribute<T>(this Stream stream, MessageContextProperty<T, DateTime> property, DateTime value)
+			where T : MessageContextPropertyBase, new()
+		{
+			return stream.InjectAttribute(property.Name, value.ToString("o"));
 		}
 
 		private static Stream InjectAttribute(this Stream stream, string name, string value)

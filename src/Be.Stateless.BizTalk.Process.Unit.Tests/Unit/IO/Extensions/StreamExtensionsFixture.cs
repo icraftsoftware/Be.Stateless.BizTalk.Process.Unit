@@ -16,6 +16,7 @@
 
 #endregion
 
+using System;
 using System.Xml.Linq;
 using Be.Stateless.BizTalk.ContextProperties;
 using Be.Stateless.IO;
@@ -27,6 +28,16 @@ namespace Be.Stateless.BizTalk.Unit.IO.Extensions
 {
 	public class StreamExtensionsFixture
 	{
+		[Fact]
+		public void InjectDateTimeAttribute()
+		{
+			var sut = new StringStream(XDocument.Parse("<root />").ToString(SaveOptions.DisableFormatting));
+
+			var stream = sut.InjectAttribute(SBMessagingProperties.EnqueuedTimeUtc, DateTime.Parse("2022-02-24T11:00:00.123456z"));
+
+			stream.ReadToEnd().Should().Be("<root EnqueuedTimeUtc=\"2022-02-24T12:00:00.1234560+01:00\" />");
+		}
+
 		[Fact]
 		public void InjectIntegerAttribute()
 		{
